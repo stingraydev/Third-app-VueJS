@@ -1,28 +1,56 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <keep-alive>
+      <component :is="component"></component>
+    </keep-alive>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Question from './components/Question.vue';
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Question
+  },
+  data() {
+    return {
+      component: 'question'
+    }
+  },
+  computed: {
+    getQuests() {
+      return getQuests();
+    }
   }
 }
-</script>
 
+function getQuests() {
+  return [{
+      type: 'radio',
+      title: 'Какой тег задает ссылку?',
+      answers: [
+        'a',
+        'div',
+        'span',
+        'img'
+      ]
+    },
+    {
+      type: 'checkbox',
+      title: 'Какие из этих тегов строчные?',
+      answers: [
+        'a',
+        'div',
+        'span',
+        'img'
+      ]
+    }
+  ];
+}
+</script>
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  color: #000;
 }
 </style>
